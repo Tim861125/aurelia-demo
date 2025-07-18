@@ -94,3 +94,14 @@ Aurelia 是一個現代化、開源的 JavaScript 前端框架，可用於建構
 **核心概念:**
 *   **CSS 引入**: 透過 `import './your-style.css';` 在 TypeScript/JavaScript 檔案中引入 CSS，Vite 等打包工具會處理它。
 *   **結構化 CSS**: 使用 ID 或 Class 選擇器來針對特定元素應用樣式，保持 CSS 的可維護性。
+
+## 練習 7: 元件化 (Componentization)
+
+這個練習將 `my-app` 中的待辦事項列表功能提取為一個獨立的 `todo-list` 元件。
+
+**變更檔案:**
+1.  **`src/todo-list.html`**: 新增待辦事項列表的 HTML 模板。
+2.  **`src/todo-list.ts`**: 新增待辦事項列表的邏輯 (包含 `tasks` 陣列、`addTask` 和 `removeTask` 方法)。
+3.  **`src/todo-list.css`**: 新增待辦事項列表的樣式檔案 (目前為空)。
+4.  **`src/my-app.html`**: 移除原有的待辦事項列表 HTML，並替換為 `<todo-list></todo-list>` 標籤。
+5.  **`src/my-app.ts`**: 移除原有的待辦事項列表相關屬性 (`tasks`, `newTask`) 和方法 (`addTask`, `removeTask`)。
