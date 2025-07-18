@@ -41,24 +41,39 @@ Aurelia 是一個現代化、開源的 JavaScript 前端框架，可用於建構
 **變更檔案:**
 1.  **`src/my-app.ts`**: 
     *   新增一個 `name` 屬性來儲存使用者輸入。
-    ```typescript
-    export class MyApp {
-      public message = 'Aurelia 資料綁定練習';
-      public name = '開發者';
-    }
-    ```
-
 2.  **`src/my-app.html`**: 
     *   新增一個 `<input>`，並使用 `value.bind="name"` 將其值與 `name` 屬性進行**雙向綁定**。
     *   新增一個 `<h2>`，使用 `${name}` **單向綁定**來顯示 `name` 的值。
-    ```html
-    <h1>${message}</h1>
-
-    <input type="text" value.bind="name">
-
-    <h2>你好, ${name}!</h2>
-    ```
 
 **核心概念:**
 *   `value.bind="..."`: 雙向綁定。UI 的變動會更新 ViewModel，反之亦然。
 *   `${...}`: 單向綁定 (插值)。用於從 ViewModel 讀取值並顯示在 View 中。
+
+## 練習 2: 事件綁定 (Event Binding)
+
+這個練習展示了如何處理 UI 事件，例如按鈕點擊。
+
+**變更檔案:**
+1.  **`src/my-app.ts`**: 
+    *   新增一個 `clearName()` 方法，當被呼叫時，會將 `name` 屬性設為空字串。
+    ```typescript
+    export class MyApp {
+      public message = 'Aurelia 資料綁定練習';
+      public name = '開發者';
+
+      public clearName(): void {
+        this.name = '';
+      }
+    }
+    ```
+
+2.  **`src/my-app.html`**: 
+    *   新增一個 `<button>` 元素。
+    *   使用 `click.trigger="clearName()"` 將按鈕的點擊事件綁定到 `clearName` 方法。
+    ```html
+    <input type="text" value.bind="name">
+    <button click.trigger="clearName()">清除</button>
+    ```
+
+**核心概念:**
+*   `event.trigger="..."`: 事件綁定。監聽指定的 `event` (如 `click`, `submit`, `input` 等)，並在事件觸發時執行對應的 ViewModel 方法。
