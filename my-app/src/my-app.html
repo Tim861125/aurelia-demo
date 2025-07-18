@@ -1,6 +1,23 @@
 <h1>${message}</h1>
 
-<input type="text" value.bind="name">
-<button click.trigger="clearName()">清除</button>
+<div>
+  <input type="text" value.bind="name">
+  <button click.trigger="clearName()">清除</button>
+</div>
 
-<h2>你好, ${name}!</h2>
+<h2 if.bind="showGreeting">你好, ${name}!</h2>
+
+<button click.trigger="toggleGreeting()">顯示/隱藏問候語</button>
+
+<hr>
+
+<h3>待辦事項列表</h3>
+
+<ul>
+  <li repeat.for="task of tasks">${task}</li>
+</ul>
+
+<form submit.trigger="addTask()">
+  <input type="text" value.bind="newTask" placeholder="新增一個任務">
+  <button type="submit">新增</button>
+</form>
