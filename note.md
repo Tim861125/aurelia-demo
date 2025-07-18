@@ -52,44 +52,45 @@ Aurelia 是一個現代化、開源的 JavaScript 前端框架，可用於建構
 
 ## 練習 4: 列表渲染 (List Rendering)
 
-這個練習展示了如何根據一個陣列來渲染一個列表。
+**核心概念:**
+*   `repeat.for="item of items"`: 列表渲染。為 `items` 陣列中的每一個 `item`，重複渲染其所在的 HTML 元素。
+
+## 練習 5: 列表項目刪除 (List Item Deletion)
+
+**核心概念:**
+*   `$index`: 在 `repeat.for` 循環中，Aurelia 提供的一個特殊變數，代表當前循環項目的索引值。
+
+## 練習 6: 樣式美化 (Styling)
+
+這個練習透過新增 CSS 檔案並引入，來改善應用程式的視覺外觀。
 
 **變更檔案:**
-1.  **`src/my-app.ts`**: 
-    *   新增 `tasks` 陣列來存放待辦事項。
-    *   新增 `newTask` 字串來綁定輸入框的值。
-    *   新增 `addTask()` 方法來處理新增邏輯。
-    ```typescript
-    export class MyApp {
-      // ... (其他屬性)
-      public tasks: string[] = ['學習 Aurelia', '建立一個專案', '喝杯咖啡'];
-      public newTask = '';
+1.  **`src/app.css`**: 
+    *   新增 `app.css` 檔案，包含基本的樣式設定，例如字體、背景、按鈕、輸入框和列表項目的樣式。
 
-      // ... (其他方法)
-      public addTask(): void {
-        if (this.newTask) {
-          this.tasks.push(this.newTask);
-          this.newTask = ''; // 清空輸入框
-        }
-      }
-    }
+2.  **`src/main.ts`**: 
+    *   在應用程式的進入點引入 `app.css` 檔案，使其樣式生效。
+    ```typescript
+    import Aurelia from 'aurelia';
+    import { MyApp } from './my-app';
+
+    import './app.css'; // 引入 CSS 檔案
+
+    Aurelia
+      .app(MyApp)
+      .start();
     ```
 
-2.  **`src/my-app.html`**: 
-    *   使用 `repeat.for="task of tasks"` 來遍歷 `tasks` 陣列並渲染 `<li>` 元素。
-    *   新增一個表單，其 `submit` 事件綁定到 `addTask()` 方法。
+3.  **`index.html`**: 
+    *   在 `<body>` 標籤內，將 `<my-app></my-app>` 包裹在一個 `id="app"` 的 `div` 中，以便 CSS 選擇器更精確地應用樣式。
     ```html
-    <h3>待辦事項列表</h3>
-
-    <ul>
-      <li repeat.for="task of tasks">${task}</li>
-    </ul>
-
-    <form submit.trigger="addTask()">
-      <input type="text" value.bind="newTask" placeholder="新增一個任務">
-      <button type="submit">新增</button>
-    </form>
+    <body>
+      <div id="app">
+        <my-app></my-app>
+      </div>
+    </body>
     ```
 
 **核心概念:**
-*   `repeat.for="item of items"`: 列表渲染。為 `items` 陣列中的每一個 `item`，重複渲染其所在的 HTML 元素。
+*   **CSS 引入**: 透過 `import './your-style.css';` 在 TypeScript/JavaScript 檔案中引入 CSS，Vite 等打包工具會處理它。
+*   **結構化 CSS**: 使用 ID 或 Class 選擇器來針對特定元素應用樣式，保持 CSS 的可維護性。

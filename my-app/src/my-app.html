@@ -14,7 +14,10 @@
 <h3>待辦事項列表</h3>
 
 <ul>
-  <li repeat.for="task of tasks">${task}</li>
+  <li repeat.for="task of tasks">
+    ${task}
+    <button click.trigger="removeTask($index)">刪除</button>
+  </li>
 </ul>
 
 <form submit.trigger="addTask()">

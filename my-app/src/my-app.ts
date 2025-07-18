@@ -20,4 +20,8 @@ export class MyApp {
       this.newTask = ''; // 清空輸入框
     }
   }
+
+  public removeTask(index: number): void {
+    this.tasks.splice(index, 1);
+  }
 }
